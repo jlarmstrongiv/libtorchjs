@@ -17,6 +17,9 @@
             [ "OS=='linux'",
                 {"action": ["npm", "run", "cmake-rebuild", "-DNAPI_VERSION=<(napi_build_version)"]}
             ],
+            [ "OS=='mac'",
+                {"action": ["npm", "run", "cmake-rebuild", "-DNAPI_VERSION=<(napi_build_version)"]}
+            ],
             [ "OS=='win'",
                 {"action": ["npm run cmake-rebuild", "-DNAPI_VERSION=<(napi_build_version)"]}
             ]
@@ -47,6 +50,18 @@
                     "libtorch/lib/libgomp-753e6e92.so.1",
                     "libtorch/lib/libpytorch_jni.so",
                     "libtorch/lib/libtorch.so"
+                  ]
+                }
+            ],
+            [ "OS=='mac'",
+                { "files+": [
+                    "libtorch/lib/libc10.dylib",
+                    "libtorch/lib/libcaffe2_detectron_ops.dylib",
+                    "libtorch/lib/libcaffe2_module_test_dynamic.dylib",
+                    "libtorch/lib/libfbjni.dylib",
+                    "libtorch/lib/libiomp5.dylib",
+                    "libtorch/lib/libpytorch_jni.dylib",
+                    "libtorch/lib/libtorch.dylib"
                   ]
                 }
             ],
