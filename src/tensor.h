@@ -14,6 +14,11 @@ namespace libtorchjs {
 
         void setTensor(at::Tensor tensor);
 
+        // void _dive(std::stringstream &ss, const at::Tensor &tensor);
+        // void _dive(std::stringstream &ss, const at::Tensor &tensor, uint8_t level);
+        void _dive(std::stringstream &ss, const at::Tensor &tensor);
+        void _dive(std::stringstream &ss, const at::Tensor &tensor, const int64_t *begin, const int64_t *end, uint8_t level);
+
         Napi::Value toString(const Napi::CallbackInfo &info);
 
         Napi::Value toUint8Array(const Napi::CallbackInfo &info);
