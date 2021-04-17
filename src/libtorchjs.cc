@@ -36,6 +36,11 @@ namespace libtorchjs {
         // make torch tensor
         torch::TensorOptions options;
         at::Tensor tensor = torch::tensor(at::ArrayRef<float>(arr.Data(), elements), options);
+        // reshape if given
+        if (info[1].IsArray()) {
+            Napi::Array shape = info[1].As<Napi::Array>();
+            tensor = torch::reshape(tensor, napiArrayToVector(shape));
+        }
         // napi tensor
         auto napiTensor = Tensor::NewInstance();
         Napi::ObjectWrap<Tensor>::Unwrap(napiTensor)->setTensor(tensor);
