@@ -39,13 +39,19 @@ namespace libtorchjs {
         return this->tensor;
     }
 
+    void Tensor::_dive(at::Tensor tensor) {
+
+    }
+
     Napi::Value Tensor::toString(const Napi::CallbackInfo &info) {
         Napi::Env env = info.Env();
         Napi::HandleScope scope(env);
 
+        auto shape = this->tensor.sizes();
         std::stringstream ss;
         ss << "Type=" << this->tensor.type() << std::endl;
-        ss << ", Size=" << this->tensor.sizes() << std::endl;
+        ss << ", Size=" << shape << std::endl;
+        ss << ", Contents=" << this->tensor.toString() << std::endl;
         return Napi::String::New(env, ss.str());
     }
 
