@@ -11,6 +11,7 @@ namespace libtorchjs {
         Napi::Function func = DefineClass(env, "Tensor", {
                 InstanceMethod("toString", &Tensor::toString),
                 InstanceMethod("toUint8Array", &Tensor::toUint8Array),
+                InstanceMethod("toFloat32Array", &Tensor::toFloat32Array),
                 InstanceMethod("view", &Tensor::view)
         });
 
@@ -61,6 +62,23 @@ namespace libtorchjs {
         auto arr = Napi::Uint8Array::New(env, size);
         for (uint64_t i = 0; i < size; i++) {
             arr[i] = byteData[i];
+        }
+        return arr;
+    }
+
+    Napi::Value Tensor::toFloat32Array(const Napi::CallbackInfo &info) {
+        Napi::Env env = info.Env();
+        Napi::HandleScope scope(env);
+
+        // total number of elements
+        uint64_t size = this->tensor.numel();
+        // make float32 type tensor
+        auto floatTensor = this->tensor.to(at::ScalarType::Float);
+        auto floatData = floatTensor.contiguous().data_ptr<float_t>();
+        // wrap in napi float32 array
+        auto arr = Napi::Float32Array::New(env, size);
+        for (uint64_t i = 0; i < size; i++) {
+            arr[i] = floatData[i];
         }
         return arr;
     }

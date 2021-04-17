@@ -18,6 +18,8 @@ namespace libtorchjs {
 
         Napi::Value toUint8Array(const Napi::CallbackInfo &info);
 
+        Napi::Value toFloat32Array(const Napi::CallbackInfo &info);
+
         Napi::Value view(const Napi::CallbackInfo &info);
 
         torch::Tensor getTensor();
