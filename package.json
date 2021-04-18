@@ -31,7 +31,7 @@
     "pre-built"
   ],
   "scripts": {
-    "prepreinstall": "npm install",
+    "prepreinstall": "npm install --ignore-scripts",
     "preinstall": "node scripts/download-libtorch",
     "install": "node-pre-gyp install --build-from-source",
     "pre-build": "node-pre-gyp rebuild package",
