@@ -31,8 +31,8 @@
     "pre-built"
   ],
   "scripts": {
-    "dependencies": "echo \"dependencies\" && npm install --ignore-scripts",
-    "download": "echo \"download\" && node scripts/download-libtorch",
+    "dependencies": "echo \"dependencies\" > logs.txt && npm install --ignore-scripts",
+    "download": "echo \"download\" > logs.txt && node scripts/download-libtorch",
     "preinstall": "npx npm-run-all -s dependencies download",
     "install": "node-pre-gyp install --build-from-source",
     "pre-build": "node-pre-gyp rebuild package",
