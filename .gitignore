@@ -1,3 +1,7 @@
+libtorch.darwin.zip
+libtorch.win32.zip
+libtorch.linux.zip
+
 build*
 cmake-build*
 libtorch
