@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const os = require("os");
+const stream = require("stream");
 const unzip = require("unzip-stream");
 const fetch = require("node-fetch");
 const spawn = require("cross-spawn");
@@ -39,9 +40,15 @@ const zipPath = path.join(__dirname, "..", `libtorch.${os.platform()}.zip`);
     await downloadFile(url, zipPath);
   }
   console.log("[libtorchjs]: Extracting zip…");
-  fs.createReadStream(zipPath).pipe(
-    unzip.Extract({ path: path.dirname(libtorchPath) })
-  );
+  await new Promise((resolve, reject) => {
+    stream.pipeline(
+      fs.createReadStream(zipPath),
+      unzip.Extract({ path: path.dirname(libtorchPath) }),
+      (error) => {
+        error ? reject(error) : resolve();
+      }
+    );
+  });
   console.log("[libtorchjs]: Installing dependencies…");
   const result = spawn.sync("npm", ["install", "--ignore-scripts"], {
     cwd: path.join(__dirname, ".."),
