@@ -3,6 +3,7 @@ const fs = require("fs");
 const os = require("os");
 const unzip = require("unzip-stream");
 const fetch = require("node-fetch");
+const spawn = require("cross-spawn");
 
 const macUrl =
   "https://download.pytorch.org/libtorch/cpu/libtorch-macos-1.8.1.zip";
@@ -41,6 +42,10 @@ const zipPath = path.join(__dirname, "..", `libtorch.${os.platform()}.zip`);
   fs.createReadStream(zipPath).pipe(
     unzip.Extract({ path: path.dirname(libtorchPath) })
   );
+  console.log("[libtorchjs]: Installing dependencies…");
+  const result = spawn.sync("npm", ["install", "--ignore-scripts"], {
+    cwd: path.join(__dirname, ".."),
+  });
 })();
 
 // download file https://stackoverflow.com/a/51302466
