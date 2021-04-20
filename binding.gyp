@@ -67,11 +67,14 @@
             ],
             [ "OS=='win'",
                 { "files+": [
+                    "libtorch/lib/asmjit.dll",
                     "libtorch/lib/c10.dll",
                     "libtorch/lib/caffe2_module_test_dynamic.dll",
+                    "libtorch/lib/fbgemm.dll",
                     "libtorch/lib/libiomp5md.dll",
                     "libtorch/lib/libiompstubs5md.dll",
-                    "libtorch/lib/torch.dll"
+                    "libtorch/lib/torch.dll",
+                    "libtorch/lib/torch_cpu.dll"
                   ]
                 }
             ]
