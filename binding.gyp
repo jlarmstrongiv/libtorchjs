@@ -46,10 +46,9 @@
                     "libtorch/lib/libc10.so",
                     "libtorch/lib/libcaffe2_detectron_ops.so",
                     "libtorch/lib/libcaffe2_module_test_dynamic.so",
-                    "libtorch/lib/libfbjni.so",
-                    "libtorch/lib/libgomp-753e6e92.so.1",
-                    "libtorch/lib/libpytorch_jni.so",
-                    "libtorch/lib/libtorch.so"
+                    "libtorch/lib/libgomp-75eea7e8.so.1",
+                    "libtorch/lib/libtorch.so",
+                    "libtorch/lib/libtorch_cpu.so"
                   ]
                 }
             ],
